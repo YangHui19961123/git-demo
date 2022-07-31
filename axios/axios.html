@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+</head>
+<body>
+  <div>
+    <button style="background-color: aquamarine;">GET</button>
+    <button style="background-color: burlywood;">POST</button>
+    <button style="background-color: cornflowerblue;">PUT</button>
+    <button style="background-color: darkgray;">DELETE</button>
+    <div id="dd"></div>
+  </div>
+  <script>
+    const btn = document.querySelectorAll('button')
+    const dd = document.getElementById('dd')
+    btn[0].onclick = function() {
+      axios({
+        // 获取
+        method:'GET',
+        url:' http://localhost:3000/posts/1'
+      }).then(res=>{
+        dd.innerText = res.data.title
+      })
+    }
+    btn[1].onclick = function() {
+      axios({
+        // 新增
+        method:'POST',
+        url:' http://localhost:3000/posts',
+        data:{
+          title:'张',
+          author:'三'
+        }
+      }).then(res=>{
+        alert('新增成功')
+      })
+    }
+    btn[2].onclick = function() {
+      axios({
+        // 更新
+        method:'PUT',
+        url:' http://localhost:3000/posts/1',
+        data:{
+          title:'张',
+          author:'三'
+        }
+      }).then(res=>{
+        alert('修改成功')
+      })
+    }
+    btn[3].onclick = function() {
+      axios({
+        // 删除
+        method:'DELETE',
+        url:' http://localhost:3000/posts/2',
+        data:{
+          title:'张',
+          author:'三'
+        }
+      }).then(res=>{
+        alert('删除成功')
+      })
+    }
+
+  </script>
+</body>
+</html>
